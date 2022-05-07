@@ -20,6 +20,8 @@ namespace GeneratorLib.Types
 		private ARMOR_VALUES.EQUIP_SLOT equipSlot;
 		private Dictionary<int, ARMOR_VALUES.PROTECTING_AREA> protectionAreas;
 		private ARMOR_VALUES.TYPE type;
+
+
 		public string Name => name;
 		public double AssemblyProtection => assemblyProtection;
 		public double PhysicalProtection => physicalProtection;
@@ -43,12 +45,124 @@ namespace GeneratorLib.Types
 			DecideResistances();
 			SetName();
 		}
-
+		/// <summary>
+		///Extension for SetProtectionAreas().
+		///Driving the addition of additional protection areas to armor pieces.
+		/// </summary>
+		void SetAdditionalProtectionAreas()
+		{
+			switch (protectionAreas[0])
+			{
+				case ARMOR_VALUES.PROTECTING_AREA.HEAD:
+					//15% chance to get shoulder protection with helmet
+					if (RAND.getRandInt(0,101) > 85)
+					{
+						protectionAreas.Add(1, ARMOR_VALUES.PROTECTING_AREA.SHOULDERS);
+						assemblyProtection += 500;
+						assemblyProtection *= 1.5;
+						if (RAND.getRandInt(0, 101) > 95)
+						{
+							protectionAreas.Add(2, ARMOR_VALUES.PROTECTING_AREA.CHEST);
+							assemblyProtection += 1000;
+							assemblyProtection *= 1.3;
+						}
+					}
+					break;
+				case ARMOR_VALUES.PROTECTING_AREA.ARMS:
+					//15% chance to get hand protection with sleeve armor
+					if (RAND.getRandInt(0, 101) > 85)
+					{
+						protectionAreas.Add(1, ARMOR_VALUES.PROTECTING_AREA.HANDS);
+						assemblyProtection += 120;
+						assemblyProtection *= 1.1;
+						if (RAND.getRandInt(0, 101) > 95)
+						{
+							protectionAreas.Add(2, ARMOR_VALUES.PROTECTING_AREA.SHOULDERS);
+							assemblyProtection += 500;
+							assemblyProtection *= 1.3;
+						}
+					}
+					break;
+				case ARMOR_VALUES.PROTECTING_AREA.CHEST:
+					//20% chance to get waist protection with chestplate
+					if (RAND.getRandInt(0,101) > 80)
+					{
+						protectionAreas.Add(1,ARMOR_VALUES.PROTECTING_AREA.WAIST);
+						assemblyProtection += 100;
+						assemblyProtection *= 1.2;
+						if (RAND.getRandInt(0,101) > 97)
+						{
+							protectionAreas.Add(2, ARMOR_VALUES.PROTECTING_AREA.SHOULDERS);
+							assemblyProtection += 300;
+							assemblyProtection *= 1.1;
+						}
+					}
+					break;
+				case ARMOR_VALUES.PROTECTING_AREA.LEGS:
+					//30% chance to have feet protection on leggings
+					if (RAND.getRandInt(0,101) > 70)
+					{
+						protectionAreas.Add(1, ARMOR_VALUES.PROTECTING_AREA.FEET);
+						assemblyProtection += 100;
+						assemblyProtection *= 1.2;
+					}
+					break;
+				default:
+					break;
+			}
+		}
+		/// <summary>
+		/// Sets the main protection area of armor pieces.
+		/// Calls SetAdditionalProtectionAreas() for handling of adding more protection areas to armor pieces.
+		/// </summary>
 		void SetProtectionAreas()
 		{
+			protectionAreas = new Dictionary<int, ARMOR_VALUES.PROTECTING_AREA>();
+			switch (equipSlot)	
+			{
+				case ARMOR_VALUES.EQUIP_SLOT.HELMET:
+					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.HEAD);
+					SetAdditionalProtectionAreas();
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.SHOULDERPLATES:
+					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.SHOULDERS);
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.CHESTPLATE:
+					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.CHEST);
+					SetAdditionalProtectionAreas();
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.SLEEVES:
+					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.ARMS);
+					SetAdditionalProtectionAreas();
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.GLOVES:
+					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.HANDS);
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.BELT:
+					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.WAIST);
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.LEGGINGS:
+					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.LEGS);
+					SetAdditionalProtectionAreas();
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.SHOES:
+					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.FEET);
+					break;
+				default:
+					break;
+			}
+			
+			if ((int)rarity>=4)
+			{
+				if (RAND.getRandInt(0,101)> 90)
+				{
 
+				}
+			}
 		}
-
+		/// <summary>
+		/// Sets the damage resistance types for armor pieces
+		/// </summary>
 		void DecideResistances()
 		{
 			switch (type)

@@ -151,7 +151,7 @@ namespace GeneratorLib.Types
 		}
 		private void SetMainDamageType()
 		{
-			if (RAND.getRandInt(0, 101) < 50)
+			if (RAND.getRandInt(0, 101) < 90)
 				mainDamageType = physicalDamageType;
 			else
 				mainDamageType = magicalDamageType;

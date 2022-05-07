@@ -20,10 +20,5 @@ namespace GeneratorLib.Values
 		{
 			HELMET, SHOULDERPLATES, CHESTPLATE, SLEEVES, GLOVES, BELT, LEGGINGS, SHOES
 		}
-		public enum ELEMENTAL_AFFINITIES
-		{
-			
-		}
-
 	}
 }
