@@ -86,11 +86,48 @@ namespace GeneratorLib.Types
 		}
 		void SetTypeModifiers()
 		{
-
+			switch (type)
+			{
+				case ARMOR_VALUES.TYPE.HEAVY:
+					assemblyProtection += 200;
+					assemblyProtection *= 1.3;
+					break;
+				case ARMOR_VALUES.TYPE.LIGHT:
+					assemblyProtection -= 100;
+					assemblyProtection *= 0.9;
+					break;
+				default:
+					break;
+			}
 		}
 		void SetRelativeArmorPieceProtectionModifiers()
 		{
-
+			switch (equipSlot)
+			{
+				case ARMOR_VALUES.EQUIP_SLOT.HELMET:
+					assemblyProtection *= 0.3;
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.SHOULDERPLATES:
+					assemblyProtection *= 0.5;
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.SLEEVES:
+					assemblyProtection *= 0.4;
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.GLOVES:
+					assemblyProtection *= 0.1;
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.BELT:
+					assemblyProtection *= 0.2;
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.LEGGINGS:
+					assemblyProtection *= 0.8;
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.SHOES:
+					assemblyProtection *= 0.2;
+					break;
+				default:
+					break;
+			}
 		}
 		/// <summary>
 		///Extension for SetProtectionAreas().
@@ -264,7 +301,7 @@ namespace GeneratorLib.Types
 		}
 		void SetName()
 		{
-
+			name = $"{COMMON_VALUES.ToString(rarity)} {ARMOR_VALUES.ToString(type)} {ARMOR_VALUES.ToString(equipSlot)}";
 		}
 		public bool Equip()
 		{
