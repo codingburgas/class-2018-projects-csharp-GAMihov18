@@ -41,9 +41,56 @@ namespace GeneratorLib.Types
 			type = (ARMOR_VALUES.TYPE)RAND.getRandInt(0, 3);
 			rarity = (COMMON_VALUES.RARITY)RAND.getRandInt(0, 7);
 			equipSlot = (ARMOR_VALUES.EQUIP_SLOT)RAND.getRandInt(0, 8);
+			SetRarityModifiers();
+			SetTypeModifiers();
+			SetRelativeArmorPieceProtectionModifiers();
 			SetProtectionAreas();
 			DecideResistances();
 			SetName();
+		}
+
+		void SetRarityModifiers()
+		{
+			switch (rarity)
+			{
+				case COMMON_VALUES.RARITY.COMMON:
+					assemblyProtection *= 0.8;
+					break;
+				case COMMON_VALUES.RARITY.UNCOMMON:
+					assemblyProtection += 100;
+					assemblyProtection *= 0.9;
+					break;
+				case COMMON_VALUES.RARITY.RARE:
+					assemblyProtection += 300;
+					assemblyProtection *= 1;
+					break;
+				case COMMON_VALUES.RARITY.EPIC:
+					assemblyProtection += 500;
+					assemblyProtection *= 1.2;
+					break;
+				case COMMON_VALUES.RARITY.LEGENDARY:
+					assemblyProtection += 700;
+					assemblyProtection *= 1.4;
+					break;
+				case COMMON_VALUES.RARITY.MYTHIC:
+					assemblyProtection += 900;
+					assemblyProtection *= 1.6;
+					break;
+				case COMMON_VALUES.RARITY.SPECIAL:
+					assemblyProtection += 1100;
+					assemblyProtection *= 1.7;
+					break;
+				default:
+					break;
+			}
+		}
+		void SetTypeModifiers()
+		{
+
+		}
+		void SetRelativeArmorPieceProtectionModifiers()
+		{
+
 		}
 		/// <summary>
 		///Extension for SetProtectionAreas().
