@@ -8,7 +8,7 @@ namespace GeneratorLib.Values
 {
 	public struct ARMOR_VALUES
 	{
-		public enum TYPE
+		public enum	TYPE
 		{ 
 			HEAVY, MEDIUM, LIGHT
 		}
@@ -21,22 +21,45 @@ namespace GeneratorLib.Values
 		{
 			HELMET, SHOULDERPLATES, CHESTPLATE, SLEEVES, GLOVES, BELT, LEGGINGS, SHOES
 		}
+
+		public static string ToString(PROTECTING_AREA pa)
+		{
+			switch (pa)
+			{
+				case PROTECTING_AREA.HEAD:
+					return "Head";
+				case PROTECTING_AREA.SHOULDERS:
+					return "Shoulders";
+				case PROTECTING_AREA.ARMS:
+					return "Arms";
+				case PROTECTING_AREA.HANDS:
+					return "Hands";
+				case PROTECTING_AREA.WAIST:
+					return "Waist";
+				case PROTECTING_AREA.CHEST:
+					return "Chest";
+				case PROTECTING_AREA.LEGS:
+					return "Legs";
+				case PROTECTING_AREA.FEET:
+					return "Feet";
+				default:
+					return "";
+			}
+		}
+
+
 		public static string ToString(TYPE type)
 		{
 			switch (type)
 			{
 				case TYPE.HEAVY:
 					return "Heavy";
-					break;
 				case TYPE.MEDIUM:
 					return "Medium";
-					break;
 				case TYPE.LIGHT:
 					return "Light";
-					break;
 				default:
 					return "";
-					break;
 			}
 		}
 		public static string ToString(EQUIP_SLOT qs)
@@ -45,31 +68,22 @@ namespace GeneratorLib.Values
 			{
 				case EQUIP_SLOT.HELMET:
 					return "Helmet";
-					break;
 				case EQUIP_SLOT.SHOULDERPLATES:
 					return "Shoulderplates";
-					break;
 				case EQUIP_SLOT.CHESTPLATE:
 					return "Chestplate";
-					break;
 				case EQUIP_SLOT.SLEEVES:
 					return "Sleeves";
-					break;
 				case EQUIP_SLOT.GLOVES:
 					return "Gloves";
-					break;
 				case EQUIP_SLOT.BELT:
 					return "Belt";
-					break;
 				case EQUIP_SLOT.LEGGINGS:
 					return "Leggings";
-					break;
 				case EQUIP_SLOT.SHOES:
 					return "Shoes";
-					break;
 				default:
 					return "";
-					break;
 			}
 		}
 	}

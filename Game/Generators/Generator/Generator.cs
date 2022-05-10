@@ -28,10 +28,7 @@ namespace GeneratorLib.Generator
 
 			weaponQueue = new Queue<Weapon>();
 			for (int i = 0; i < numberOfWeapons; i++)
-			{
 				weaponQueue.Enqueue(new Weapon());
-			}
-
 			return true;
 		}
 
@@ -40,26 +37,17 @@ namespace GeneratorLib.Generator
 
 			armorQueue = new Queue<Armor>();
 			for (int i = 0; i < numberOfArmors; i++)
-			{
 				armorQueue.Enqueue(new Armor());
-			}
 			return true;
 		}
 		public Weapon NextWeapon()
 		{
-			if (weaponQueue.Count == 0)
-			{
-				return null;
-			}
-			return weaponQueue.Dequeue();
+			return weaponQueue.Count == 0 ? null : weaponQueue.Dequeue();
 		}
 		public Armor NextArmor()
 		{
-			if (armorQueue.Count == 0)
-			{
-				return null;
-			}
-			return armorQueue.Dequeue();
+
+			return armorQueue.Count == 0 ? null : armorQueue.Dequeue();
 		}
 		public void ClearMemory()
 		{
@@ -68,7 +56,33 @@ namespace GeneratorLib.Generator
 		}
 		public void DumpDebug()
 		{
+			StreamWriter generatedWeaponsWriter = new StreamWriter("generatedWeaponsDump.txt",false);
+			StreamWriter generatedArmorsWriter = new StreamWriter("generatedArmorsDump.txt", false);
 
+
+			generatedWeaponsWriter.WriteLine("Name:Assembly Damage:Physical Damage:Magical Damage:Crit Multiplier:Crit Rate:Rarity:Weapon Type:Main Damage Type:Physical Damage Type:Magical Damage Type");
+
+
+			generatedArmorsWriter.WriteLine("Name:Assembly Protection:Physical Protection:Magical Protection:Slashing Resistance:Piercing Resistance:Blunt Resistance:Fire Resistance:Water Resistance:Earth Resistance:Air Resistance:Lux Resistance:Void Resistance:Current Durability:Max Durability:Rarity:Equip Slot:Protection Areas:Type");
+
+			if (weaponQueue.Count != 0)
+			{
+				foreach (var weapon in weaponQueue)
+				{
+					generatedWeaponsWriter.WriteLine(weapon.GetWeaponData(false));
+				}
+				generatedWeaponsWriter.Close();
+			}
+
+			if (armorQueue.Count != 0)
+			{
+				foreach (var armor in armorQueue)
+				{
+					generatedArmorsWriter.WriteLine(armor.GetArmorData(false));
+				}
+				generatedArmorsWriter.Close();
+			}
+			//Add writer for players when players are implemented
 		}
 	}
 }

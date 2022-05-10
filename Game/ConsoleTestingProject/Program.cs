@@ -7,7 +7,10 @@ namespace ConsoleTestingProject
 		static void Main(string[] args)
 		{
 			Generator generator = new Generator();
-			generator.
+			generator.GenerateWeapons(100);
+			generator.GenerateArmors(100);
+			generator.DumpDebug();
+
 		}
 	}
 }

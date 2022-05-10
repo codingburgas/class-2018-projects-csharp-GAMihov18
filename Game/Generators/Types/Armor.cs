@@ -22,6 +22,46 @@ namespace GeneratorLib.Types
 		private ARMOR_VALUES.TYPE type;
 
 
+		public string GetArmorData(bool isReadable)
+		{
+			string resistances = "";
+			string protectionAreas = "";
+			if (isReadable)
+			{
+				foreach (var resistance in this.resistances)
+				{
+					resistances += $"\t{WEAPON_VALUES.ToString(resistance.Key)}: {resistance.Value/100:p}\n";
+				}
+				foreach (var protectionArea in this.protectionAreas)
+				{
+					protectionAreas += $"\t{ARMOR_VALUES.ToString(protectionArea.Value)}";
+				}
+				return $"Name: {name}\n" +
+					$"Assembly Protection: {assemblyProtection:f2}\n" +
+					$"Physical Protection: {physicalProtection:f2}\n" +
+					$"Magical Protection: {magicalProtection:f2}\n" +
+					$"Resistances:\n{resistances}\n" +
+					$"Durability(current/max): {currentDurability:f2}/{durability:f2}" +
+					$"Rarity: {COMMON_VALUES.ToString(rarity)}\n" +
+					$"Equip slot: {ARMOR_VALUES.ToString(equipSlot)}\n" +
+					$"Protection Areas:\n{protectionAreas}\n" +
+					$"Type: {ARMOR_VALUES.ToString(type)} armor";
+			}
+			else
+			{
+				foreach (var resistance in this.resistances)
+				{
+					resistances += $"{resistance.Value / 100:p}:";
+				}
+				foreach (var protectionArea in this.protectionAreas)
+				{
+					protectionAreas += $"{ARMOR_VALUES.ToString(protectionArea.Value):p}, ";
+				}
+				return $"{name}:{assemblyProtection:f2}:{physicalProtection:f2}:{magicalProtection:f2}:{resistances}{currentDurability:f2}:{durability:f2}:{COMMON_VALUES.ToString(rarity)}:{ARMOR_VALUES.ToString(equipSlot)}:{protectionAreas}:{ARMOR_VALUES.ToString(type)}";
+			}
+		}
+
+
 		public string Name => name;
 		public double AssemblyProtection => assemblyProtection;
 		public double PhysicalProtection => physicalProtection;
@@ -39,6 +79,8 @@ namespace GeneratorLib.Types
 			assemblyProtection = RAND.getRandDouble(300, 3001);
 			resistances = new Dictionary<WEAPON_VALUES.DAMAGE_TYPE, double>();
 			type = (ARMOR_VALUES.TYPE)RAND.getRandInt(0, 3);
+			durability = RAND.getRandDouble(100,1000);
+			currentDurability = durability;
 			rarity = (COMMON_VALUES.RARITY)RAND.getRandInt(0, 7);
 			equipSlot = (ARMOR_VALUES.EQUIP_SLOT)RAND.getRandInt(0, 8);
 			SetRarityModifiers();
@@ -258,6 +300,13 @@ namespace GeneratorLib.Types
 						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.PIERCING, RAND.getRandDouble(-20, 1));
 						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, RAND.getRandDouble(-20, 16));
 					}
+					else
+					{
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.SLASHING, 0);
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.PIERCING, 0);
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, 0);
+					}
+
 					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.FIRE    , RAND.getRandDouble(0, 11));
 					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.WATER   , RAND.getRandDouble(0, 11));
 					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.EARTH   , RAND.getRandDouble(0, 11));
@@ -272,7 +321,13 @@ namespace GeneratorLib.Types
 						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.PIERCING, RAND.getRandDouble(-10, 11));
 						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, RAND.getRandDouble(0, 21));
 					}
-					
+					else
+					{
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.SLASHING, 0);
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.PIERCING, 0);
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, 0);
+					}
+
 					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.FIRE    , RAND.getRandDouble(0, 21));
 					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.WATER   , RAND.getRandDouble(0, 21));
 					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.EARTH   , RAND.getRandDouble(0, 21));
@@ -286,6 +341,12 @@ namespace GeneratorLib.Types
 						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.SLASHING, RAND.getRandDouble(-15, 1));
 						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.PIERCING, RAND.getRandDouble(0, 11));
 						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, RAND.getRandDouble(10, 31));
+					}
+					else
+					{
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.SLASHING, 0);
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.PIERCING, 0);
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, 0);
 					}
 
 					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.FIRE    , RAND.getRandDouble(10, 51));
@@ -303,6 +364,9 @@ namespace GeneratorLib.Types
 		{
 			name = $"{COMMON_VALUES.ToString(rarity)} {ARMOR_VALUES.ToString(type)} {ARMOR_VALUES.ToString(equipSlot)}";
 		}
+
+		
+
 		public bool Equip()
 		{
 			throw new NotImplementedException();
