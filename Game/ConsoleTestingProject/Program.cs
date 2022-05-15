@@ -8,23 +8,18 @@ namespace ConsoleTestingProject
 		static void Main(string[] args)
 		{
 			Generator generator = new Generator();
-			generator.GenerateWeapons(1);
-			Weapon weapon = generator.NextWeapon();
-			generator.GenerateArmors(1);
-			IArmor equipable = generator.NextArmor();
-			IArmor armor1 = equipable;
-			IArmor armor2 = equipable;
-			Console.WriteLine(weapon.GetWeaponData(false));
+			Player player1= new Player();
+			Player player2 = new Player();
+			Console.WriteLine(player2.MainHand.GetWeaponData(true));
 			Console.WriteLine();
-			Console.WriteLine(equipable.GetArmorData(false));
-			Console.WriteLine();
-			Console.WriteLine();
-			armor1.ReceiveDamageFrom(weapon);
-			Console.WriteLine(equipable.GetArmorData(false));
+			Console.WriteLine(player1.Head.GetArmorData(true));
+			while (!player1.ReceiveDamage(player2, GeneratorLib.Values.ARMOR_VALUES.PROTECTING_AREA.HEAD));
+			{
+				Console.WriteLine("Player 2 missed :pensive:");
+			}
 			Console.WriteLine();
 			Console.WriteLine();
-			armor1.ReceiveDamageFrom(weapon);
-			Console.WriteLine(equipable.GetArmorData(false));
+			Console.WriteLine(player1.Head.GetArmorData(true));
 		}
 	}
 }

@@ -73,7 +73,7 @@ namespace GeneratorLib.Types
 		public ARMOR_VALUES.EQUIP_SLOT EquipSlot => equipSlot;
 		public Dictionary<int, ARMOR_VALUES.PROTECTING_AREA> ProtectionAreas => protectionAreas;
 		public ARMOR_VALUES.TYPE Type => type;
-
+		//Creates a randomly generated armor piece
 		public Armor()
 		{
 			assemblyProtection = RAND.getRandDouble(300, 3001);
@@ -83,6 +83,44 @@ namespace GeneratorLib.Types
 			currentDurability = durability;
 			rarity = (COMMON_VALUES.RARITY)RAND.getRandInt(0, 7);
 			equipSlot = (ARMOR_VALUES.EQUIP_SLOT)RAND.getRandInt(0, 8);
+			SetRarityModifiers();
+			SetTypeModifiers();
+			SetRelativeArmorPieceProtectionModifiers();
+			SetProtectionAreas();
+			DecideResistances();
+			setPhysicalAndMagicalProtection();
+			SetName();
+		}
+		//Parametarised Armor Constructor.
+		public Armor(
+			ARMOR_VALUES.EQUIP_SLOT equipSlot = (ARMOR_VALUES.EQUIP_SLOT)8,
+			double assemblyProtection = -1,
+			ARMOR_VALUES.TYPE type = (ARMOR_VALUES.TYPE)3,
+			double durability = -1,
+			COMMON_VALUES.RARITY rarity = (COMMON_VALUES.RARITY)7)
+		{
+			if (assemblyProtection == -1)
+				this.assemblyProtection = RAND.getRandDouble(300, 3001);
+			else
+				this.assemblyProtection = assemblyProtection;
+			this.resistances = new Dictionary<WEAPON_VALUES.DAMAGE_TYPE, double>();
+			if ((int)type == 3)
+				this.type = (ARMOR_VALUES.TYPE)RAND.getRandInt(0, 3);
+			else
+				this.type = type;
+			if (durability == -1)
+				this.durability = RAND.getRandDouble(100, 1000);
+			else
+				this.durability = durability;
+			this.currentDurability = this.durability;
+			if ((int)rarity == 7)
+				this.rarity = (COMMON_VALUES.RARITY)RAND.getRandInt(0, 7);
+			else
+				this.rarity = rarity;
+			if ((int)equipSlot == 8)
+				equipSlot = (ARMOR_VALUES.EQUIP_SLOT)RAND.getRandInt(0, 8);
+			else
+				this.equipSlot = equipSlot;
 			SetRarityModifiers();
 			SetTypeModifiers();
 			SetRelativeArmorPieceProtectionModifiers();

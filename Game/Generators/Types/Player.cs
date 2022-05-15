@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GeneratorLib.Values;
+using GeneratorLib.Types;
 using RFMiscLib.RandomNumber;
 namespace GeneratorLib.Types
 {
@@ -48,6 +49,19 @@ namespace GeneratorLib.Types
 		public double ManaRegenerationRate => manaRegenerationRate;
 		public List<IItem> Inventory => inventory;
 
+		public Player()
+		{
+			mainHand = new Weapon();
+			head = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.HELMET);
+			shoulders = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SHOULDERPLATES);
+			arms = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SLEEVES);
+			hands = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.GLOVES);
+			waist = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.BELT);
+			chest = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.CHESTPLATE);
+			legs = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.LEGGINGS);
+			feet = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SHOES);
+		}
+		
 
 		public bool ReceiveDamage(IPlayer player,ARMOR_VALUES.PROTECTING_AREA targetArea)
 		{
@@ -151,7 +165,6 @@ namespace GeneratorLib.Types
 						return false;
 				default:
 					return false;
-					break;
 			}
 			
 		}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GeneratorLib.Values;
 
 namespace GeneratorLib.Types
 {
@@ -26,5 +27,6 @@ namespace GeneratorLib.Types
 		public double Mana { get; }
 		public double ManaRegenerationRate { get; }
 		public List<IItem> Inventory { get; }
+		public bool ReceiveDamage(IPlayer player, ARMOR_VALUES.PROTECTING_AREA targetArea);
 }
 }
