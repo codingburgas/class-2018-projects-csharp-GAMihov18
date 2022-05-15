@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GeneratorLib.Types
 {
-	interface IItem
+	public interface IItem
 	{
 		string Name { get; }
 	}

@@ -37,8 +37,8 @@ namespace GeneratorLib.Types
 		}
 		public double MagicalDamage
 		{
-			get { return MagicalDamage; }
-			private set { MagicalDamage = value; }
+			get { return magicalDamage; }
+			private set { magicalDamage = value; }
 		}
 		public double CritRate
 		{

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using GeneratorLib.Values;
 namespace GeneratorLib.Types
 {
-	interface IWeapon : IEquipable, IItem
+	public interface IWeapon : IEquipable, IItem
 	{
 		double AssemblyDamage { get; }
 		double PhysicalDamage { get; }

@@ -30,28 +30,28 @@ namespace GeneratorLib.Types
 			{
 				foreach (var resistance in this.resistances)
 				{
-					resistances += $"\t{WEAPON_VALUES.ToString(resistance.Key)}: {resistance.Value/100:p}\n";
+					resistances += $"\t- {WEAPON_VALUES.ToString(resistance.Key)}: {resistance.Value:p}\n";
 				}
 				foreach (var protectionArea in this.protectionAreas)
 				{
-					protectionAreas += $"\t{ARMOR_VALUES.ToString(protectionArea.Value)}";
+					protectionAreas += $"\t- {ARMOR_VALUES.ToString(protectionArea.Value)}\n";
 				}
 				return $"Name: {name}\n" +
 					$"Assembly Protection: {assemblyProtection:f2}\n" +
 					$"Physical Protection: {physicalProtection:f2}\n" +
 					$"Magical Protection: {magicalProtection:f2}\n" +
-					$"Resistances:\n{resistances}\n" +
-					$"Durability(current/max): {currentDurability:f2}/{durability:f2}" +
+					$"Resistances:\n{resistances}" +
+					$"Durability(current/max): {currentDurability:f2}/{durability:f2}\n" +
 					$"Rarity: {COMMON_VALUES.ToString(rarity)}\n" +
 					$"Equip slot: {ARMOR_VALUES.ToString(equipSlot)}\n" +
-					$"Protection Areas:\n{protectionAreas}\n" +
+					$"Protection Areas:\n{protectionAreas}" +
 					$"Type: {ARMOR_VALUES.ToString(type)} armor";
 			}
 			else
 			{
 				foreach (var resistance in this.resistances)
 				{
-					resistances += $"{resistance.Value / 100:p}:";
+					resistances += $"{resistance.Value:p}:";
 				}
 				foreach (var protectionArea in this.protectionAreas)
 				{
@@ -88,9 +88,29 @@ namespace GeneratorLib.Types
 			SetRelativeArmorPieceProtectionModifiers();
 			SetProtectionAreas();
 			DecideResistances();
+			setPhysicalAndMagicalProtection();
 			SetName();
 		}
-
+		void setPhysicalAndMagicalProtection()
+		{
+			switch (type)
+			{
+				case ARMOR_VALUES.TYPE.HEAVY:
+					physicalProtection = assemblyProtection * 0.8;
+					magicalProtection = assemblyProtection * 0.3;
+					break;
+				case ARMOR_VALUES.TYPE.MEDIUM:
+					physicalProtection = assemblyProtection * 0.6;
+					magicalProtection = assemblyProtection * 0.65;
+					break;
+				case ARMOR_VALUES.TYPE.LIGHT:
+					physicalProtection = assemblyProtection * 0.3;
+					magicalProtection = assemblyProtection * 0.8;
+					break;
+				default:
+					break;
+			}
+		}
 		void SetRarityModifiers()
 		{
 			switch (rarity)
@@ -296,9 +316,9 @@ namespace GeneratorLib.Types
 				case ARMOR_VALUES.TYPE.HEAVY:
 					if ((int)rarity>=3)
 					{
-						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.SLASHING, RAND.getRandDouble(15, 41));
-						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.PIERCING, RAND.getRandDouble(-20, 1));
-						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, RAND.getRandDouble(-20, 16));
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.SLASHING, RAND.getRandDouble(0.15, 0.41));
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.PIERCING, RAND.getRandDouble(-0.20, 0.1));
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, RAND.getRandDouble(-0.20, 0.16));
 					}
 					else
 					{
@@ -307,19 +327,19 @@ namespace GeneratorLib.Types
 						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, 0);
 					}
 
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.FIRE    , RAND.getRandDouble(0, 11));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.WATER   , RAND.getRandDouble(0, 11));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.EARTH   , RAND.getRandDouble(0, 11));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.AIR     , RAND.getRandDouble(0, 11));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.LUX     , RAND.getRandDouble(0, 11));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.VOID    , RAND.getRandDouble(0, 11));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.FIRE    , RAND.getRandDouble(0, 0.11));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.WATER   , RAND.getRandDouble(0, 0.11));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.EARTH   , RAND.getRandDouble(0, 0.11));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.AIR     , RAND.getRandDouble(0, 0.11));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.LUX     , RAND.getRandDouble(0, 0.11));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.VOID    , RAND.getRandDouble(0, 0.11));
 					break;
 				case ARMOR_VALUES.TYPE.MEDIUM:
 					if ((int)rarity >= 3)
 					{
-						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.SLASHING, RAND.getRandDouble(0, 16));
-						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.PIERCING, RAND.getRandDouble(-10, 11));
-						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, RAND.getRandDouble(0, 21));
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.SLASHING, RAND.getRandDouble(0, 0.16));
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.PIERCING, RAND.getRandDouble(-0.10, 0.11));
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, RAND.getRandDouble(0, 0.21));
 					}
 					else
 					{
@@ -328,19 +348,19 @@ namespace GeneratorLib.Types
 						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, 0);
 					}
 
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.FIRE    , RAND.getRandDouble(0, 21));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.WATER   , RAND.getRandDouble(0, 21));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.EARTH   , RAND.getRandDouble(0, 21));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.AIR     , RAND.getRandDouble(0, 21));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.LUX     , RAND.getRandDouble(0, 21));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.VOID    , RAND.getRandDouble(0, 21));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.FIRE    , RAND.getRandDouble(0, 0.21));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.WATER   , RAND.getRandDouble(0, 0.21));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.EARTH   , RAND.getRandDouble(0, 0.21));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.AIR     , RAND.getRandDouble(0, 0.21));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.LUX     , RAND.getRandDouble(0, 0.21));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.VOID    , RAND.getRandDouble(0, 0.21));
 					break;
 				case ARMOR_VALUES.TYPE.LIGHT:
 					if ((int)rarity >= 3)
 					{
-						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.SLASHING, RAND.getRandDouble(-15, 1));
-						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.PIERCING, RAND.getRandDouble(0, 11));
-						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, RAND.getRandDouble(10, 31));
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.SLASHING, RAND.getRandDouble(-0.15, 0.1));
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.PIERCING, RAND.getRandDouble(0, 0.11));
+						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, RAND.getRandDouble(0.10, 0.31));
 					}
 					else
 					{
@@ -349,12 +369,12 @@ namespace GeneratorLib.Types
 						resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.BLUNT, 0);
 					}
 
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.FIRE    , RAND.getRandDouble(10, 51));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.WATER   , RAND.getRandDouble(10, 51));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.EARTH   , RAND.getRandDouble(10, 51));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.AIR     , RAND.getRandDouble(10, 51));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.LUX     , RAND.getRandDouble(10, 51));
-					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.VOID    , RAND.getRandDouble(10, 51));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.FIRE    , RAND.getRandDouble(0.10, 0.51));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.WATER   , RAND.getRandDouble(0.10, 0.51));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.EARTH   , RAND.getRandDouble(0.10, 0.51));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.AIR     , RAND.getRandDouble(0.10, 0.51));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.LUX     , RAND.getRandDouble(0.10, 0.51));
+					resistances.Add(WEAPON_VALUES.DAMAGE_TYPE.VOID    , RAND.getRandDouble(0.10, 0.51));
 					break;
 				default:
 					break;
@@ -365,8 +385,60 @@ namespace GeneratorLib.Types
 			name = $"{COMMON_VALUES.ToString(rarity)} {ARMOR_VALUES.ToString(type)} {ARMOR_VALUES.ToString(equipSlot)}";
 		}
 
-		
 
+		public void ReceiveDamageFrom(IWeapon weapon)
+		{
+			if(weapon == null)
+				return;
+			else
+			{
+				switch (weapon.PhysicalDamageType)
+				{
+					case WEAPON_VALUES.DAMAGE_TYPE.SLASHING:
+						physicalProtection -= weapon.PhysicalDamage * (1 - resistances[WEAPON_VALUES.DAMAGE_TYPE.SLASHING]);
+						break;
+					case WEAPON_VALUES.DAMAGE_TYPE.PIERCING:
+						physicalProtection -= weapon.PhysicalDamage * (1 - resistances[WEAPON_VALUES.DAMAGE_TYPE.PIERCING]);
+						break;
+					case WEAPON_VALUES.DAMAGE_TYPE.BLUNT:
+						physicalProtection -= weapon.PhysicalDamage * (1 - resistances[WEAPON_VALUES.DAMAGE_TYPE.BLUNT]);
+						break;
+					default:
+						break;
+				}
+				switch (weapon.MagicalDamageType)
+				{
+					case WEAPON_VALUES.DAMAGE_TYPE.FIRE:
+						magicalProtection -= weapon.MagicalDamage * (1 - resistances[WEAPON_VALUES.DAMAGE_TYPE.FIRE]);
+						break;
+					case WEAPON_VALUES.DAMAGE_TYPE.WATER:
+						magicalProtection -= weapon.MagicalDamage * (1 - resistances[WEAPON_VALUES.DAMAGE_TYPE.WATER]);
+						break;
+					case WEAPON_VALUES.DAMAGE_TYPE.EARTH:
+						magicalProtection -= weapon.MagicalDamage * (1 - resistances[WEAPON_VALUES.DAMAGE_TYPE.EARTH]);
+						break;
+					case WEAPON_VALUES.DAMAGE_TYPE.AIR:
+						magicalProtection -= weapon.MagicalDamage * (1 - resistances[WEAPON_VALUES.DAMAGE_TYPE.AIR]);
+						break;
+					case WEAPON_VALUES.DAMAGE_TYPE.VOID:
+						magicalProtection -= weapon.MagicalDamage * (1 - resistances[WEAPON_VALUES.DAMAGE_TYPE.VOID]);
+						break;
+					case WEAPON_VALUES.DAMAGE_TYPE.LUX:
+						magicalProtection -= weapon.MagicalDamage * (1 - resistances[WEAPON_VALUES.DAMAGE_TYPE.LUX]);
+						break;
+					default:
+						break;
+				}
+				if (physicalProtection < 0)
+				{
+					physicalProtection = 0;
+				}
+				if (magicalProtection < 0)
+				{
+					magicalProtection = 0;
+				}
+			}
+		}
 		public bool Equip()
 		{
 			throw new NotImplementedException();

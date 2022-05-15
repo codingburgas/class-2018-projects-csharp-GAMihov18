@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using GeneratorLib.Values;
 namespace GeneratorLib.Types
 {
-	interface IArmor : IEquipable, IItem
+	public interface IArmor : IEquipable, IItem
 	{
 		double AssemblyProtection { get; }
 		double PhysicalProtection { get; }
@@ -18,5 +18,7 @@ namespace GeneratorLib.Types
 		ARMOR_VALUES.EQUIP_SLOT EquipSlot { get; }
 		Dictionary<int, ARMOR_VALUES.PROTECTING_AREA> ProtectionAreas { get; }
 		ARMOR_VALUES.TYPE Type { get; }
+		void ReceiveDamageFrom(IWeapon weapon);
+		string GetArmorData(bool isReadable);
 	}
 }

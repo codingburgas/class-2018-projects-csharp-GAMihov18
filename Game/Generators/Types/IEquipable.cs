@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GeneratorLib.Types
 {
-	interface IEquipable
+	public interface IEquipable
 	{
 		bool Equip();
 	}
