@@ -18,22 +18,13 @@ namespace ConsoleTestingProject
 			Console.WriteLine();
 			Console.WriteLine(equipable.GetArmorData(false));
 			Console.WriteLine();
-			Console.WriteLine(armor1.GetArmorData(false));
-			Console.WriteLine();
-			Console.WriteLine(armor2.GetArmorData(false));
-			armor1.ReceiveDamageFrom(weapon);
-			Console.WriteLine(equipable.GetArmorData(false));
-			Console.WriteLine();
-			Console.WriteLine(armor1.GetArmorData(false));
-			Console.WriteLine();
-			Console.WriteLine(armor2.GetArmorData(false));
 			Console.WriteLine();
 			armor1.ReceiveDamageFrom(weapon);
 			Console.WriteLine(equipable.GetArmorData(false));
 			Console.WriteLine();
-			Console.WriteLine(armor1.GetArmorData(false));
 			Console.WriteLine();
-			Console.WriteLine(armor2.GetArmorData(false));
+			armor1.ReceiveDamageFrom(weapon);
+			Console.WriteLine(equipable.GetArmorData(false));
 		}
 	}
 }
