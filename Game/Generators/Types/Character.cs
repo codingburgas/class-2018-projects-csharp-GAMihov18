@@ -8,7 +8,7 @@ using GeneratorLib.Types;
 using RFMiscLib.RandomNumber;
 namespace GeneratorLib.Types
 {
-	public class Player : IPlayer
+	public class Character : ICharacter
 	{
 		string name;
 		IWeapon? mainHand;
@@ -49,7 +49,7 @@ namespace GeneratorLib.Types
 		public double ManaRegenerationRate => manaRegenerationRate;
 		public List<IItem> Inventory => inventory;
 
-		public Player(bool isGeared = true)
+		public Character(bool isGeared = true)
 		{
 
 			if (isGeared)
@@ -183,7 +183,7 @@ namespace GeneratorLib.Types
 			return true;
 
 		}
-		public bool ReceiveDamage(IPlayer player,ARMOR_VALUES.PROTECTING_AREA targetArea)
+		public bool ReceiveDamage(ICharacter player,ARMOR_VALUES.PROTECTING_AREA targetArea)
 		{
 			IWeapon enemyWeapon = player.MainHand;
 			switch (targetArea)

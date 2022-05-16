@@ -11,7 +11,7 @@ namespace ConsoleTestingProject
 			Generator generator = new Generator();
 			generator.GenerateWeapons(100);
 			generator.GenerateArmors(100);
-			Player player = new Player(isGeared: true);
+			Character player = new Character(isGeared: true);
 			Armor armor = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.HELMET);
 			player.Equip(armor);
 			player.Unequip(player.Head);
