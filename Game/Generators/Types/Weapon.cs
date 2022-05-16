@@ -50,6 +50,7 @@ namespace GeneratorLib.Types
 			get { return critMult; }
 			private set { critMult = value; }
 		}
+		public COMMON_VALUES.ITEM_TYPE ItemType => COMMON_VALUES.ITEM_TYPE.WEAPON;
 		public WEAPON_VALUES.TYPE WeaponType
 		{
 			get { return weaponType; }
@@ -160,7 +161,11 @@ namespace GeneratorLib.Types
 		{
 			name = $"{COMMON_VALUES.ToString(rarity)} {WEAPON_VALUES.ToString(weaponType)} of {WEAPON_VALUES.ToString(mainDamageType)}";
 		}
-		public string GetWeaponData(bool isReadable)
+		public string GetData(bool isReadable)
+		{
+			return GetWeaponData(isReadable);
+		}
+		private string GetWeaponData(bool isReadable)
 		{
 			if (isReadable)
 			{
@@ -282,10 +287,9 @@ namespace GeneratorLib.Types
 					break;
 			}
 		}
-
-		public bool Equip()
+		public override string ToString()
 		{
-			throw new NotImplementedException();
+			return name;
 		}
 	}
 }

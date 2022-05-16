@@ -69,7 +69,7 @@ namespace GeneratorLib.Generator
 			{
 				foreach (var weapon in weaponQueue)
 				{
-					generatedWeaponsWriter.WriteLine(weapon.GetWeaponData(false));
+					generatedWeaponsWriter.WriteLine(weapon.GetData(false));
 				}
 				generatedWeaponsWriter.Close();
 			}
@@ -78,7 +78,7 @@ namespace GeneratorLib.Generator
 			{
 				foreach (var armor in armorQueue)
 				{
-					generatedArmorsWriter.WriteLine(armor.GetArmorData(false));
+					generatedArmorsWriter.WriteLine(armor.GetData(false));
 				}
 				generatedArmorsWriter.Close();
 			}

@@ -28,5 +28,7 @@ namespace GeneratorLib.Types
 		public double ManaRegenerationRate { get; }
 		public List<IItem> Inventory { get; }
 		public bool ReceiveDamage(IPlayer player, ARMOR_VALUES.PROTECTING_AREA targetArea);
+		public bool Equip(IEquipable item);
+		public bool Unequip(IEquipable equipable);
 }
 }

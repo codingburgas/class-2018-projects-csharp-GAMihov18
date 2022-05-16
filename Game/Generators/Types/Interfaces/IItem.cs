@@ -9,5 +9,7 @@ namespace GeneratorLib.Types
 	public interface IItem
 	{
 		string Name { get; }
+		COMMON_VALUES.ITEM_TYPE ItemType { get; }
+		string GetData(bool isReadable);
 	}
 }

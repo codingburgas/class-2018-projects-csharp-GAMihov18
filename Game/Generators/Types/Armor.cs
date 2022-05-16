@@ -21,8 +21,11 @@ namespace GeneratorLib.Types
 		private Dictionary<int, ARMOR_VALUES.PROTECTING_AREA> protectionAreas;
 		private ARMOR_VALUES.TYPE type;
 
-
-		public string GetArmorData(bool isReadable)
+		public string GetData(bool isReadable)
+		{
+			return GetArmorData(isReadable);
+		}
+		private string GetArmorData(bool isReadable)
 		{
 			string resistances = "";
 			string protectionAreas = "";
@@ -61,7 +64,7 @@ namespace GeneratorLib.Types
 			}
 		}
 
-
+		public COMMON_VALUES.ITEM_TYPE ItemType => COMMON_VALUES.ITEM_TYPE.ARMOR;
 		public string Name => name;
 		public double AssemblyProtection => assemblyProtection;
 		public double PhysicalProtection => physicalProtection;
@@ -83,6 +86,7 @@ namespace GeneratorLib.Types
 			currentDurability = durability;
 			rarity = (COMMON_VALUES.RARITY)RAND.getRandInt(0, 7);
 			equipSlot = (ARMOR_VALUES.EQUIP_SLOT)RAND.getRandInt(0, 8);
+			Dictionary<int, ARMOR_VALUES.PROTECTING_AREA> protectionAreas = new Dictionary<int, ARMOR_VALUES.PROTECTING_AREA>(); 
 			SetRarityModifiers();
 			SetTypeModifiers();
 			SetRelativeArmorPieceProtectionModifiers();
@@ -99,6 +103,8 @@ namespace GeneratorLib.Types
 			double durability = -1,
 			COMMON_VALUES.RARITY rarity = (COMMON_VALUES.RARITY)7)
 		{
+
+			Dictionary<int, ARMOR_VALUES.PROTECTING_AREA> protectionAreas = new Dictionary<int, ARMOR_VALUES.PROTECTING_AREA>();
 			if (assemblyProtection == -1)
 				this.assemblyProtection = RAND.getRandDouble(300, 3001);
 			else
@@ -426,7 +432,7 @@ namespace GeneratorLib.Types
 
 		public void ReceiveDamageFrom(IWeapon weapon)
 		{
-			if(weapon == null)
+			if (weapon == null)
 				return;
 			else
 			{
@@ -477,9 +483,9 @@ namespace GeneratorLib.Types
 				}
 			}
 		}
-		public bool Equip()
+		public override string ToString()
 		{
-			throw new NotImplementedException();
+			return name;
 		}
 	}
 }

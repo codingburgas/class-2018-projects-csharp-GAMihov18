@@ -49,20 +49,140 @@ namespace GeneratorLib.Types
 		public double ManaRegenerationRate => manaRegenerationRate;
 		public List<IItem> Inventory => inventory;
 
-		public Player()
+		public Player(bool isGeared = true)
 		{
-			mainHand = new Weapon();
-			head = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.HELMET);
-			shoulders = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SHOULDERPLATES);
-			arms = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SLEEVES);
-			hands = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.GLOVES);
-			waist = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.BELT);
-			chest = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.CHESTPLATE);
-			legs = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.LEGGINGS);
-			feet = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SHOES);
-		}
-		
 
+			if (isGeared)
+			{
+				mainHand = new Weapon();
+				head = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.HELMET);
+				shoulders = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SHOULDERPLATES);
+				arms = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SLEEVES);
+				hands = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.GLOVES);
+				waist = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.BELT);
+				chest = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.CHESTPLATE);
+				legs = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.LEGGINGS);
+				feet = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SHOES);
+			}
+			else
+			{
+				mainHand = null;
+				head = null;
+				shoulders = null;
+				arms = null;
+				hands = null;
+				waist = null;
+				chest = null;
+				legs = null;
+				feet = null;
+			}
+		}
+		public bool Equip(IEquipable equipable)
+		{
+			if (equipable.ItemType == COMMON_VALUES.ITEM_TYPE.ARMOR)
+			{
+				EquipArmor(equipable as IArmor);
+			}
+			return true;
+		}
+		public bool Unequip(IEquipable equipable)
+		{
+			if (equipable.ItemType == COMMON_VALUES.ITEM_TYPE.ARMOR)
+			{
+				UnequipArmor(equipable as IArmor);
+			}
+			return true;
+		}
+		private bool UnequipArmor(IArmor armor)
+		{
+			
+			switch (armor.EquipSlot)
+			{
+				case ARMOR_VALUES.EQUIP_SLOT.HELMET:
+					inventory.Add(head);
+					if (head.ProtectionAreas.Count == 2)
+					{
+						head = null;
+						shoulders = null;
+					}
+					else if (head.ProtectionAreas.Count == 3)
+					{
+						head = null;
+						shoulders = null;
+						chest = null;
+					}
+					else
+						head = null;
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.SHOULDERPLATES:
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.CHESTPLATE:
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.SLEEVES:
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.GLOVES:
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.BELT:
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.LEGGINGS:
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.SHOES:
+					break;
+				default:
+					break;
+			}
+
+
+			return true;
+		}
+		private bool EquipArmor(IArmor armor)
+		{
+			switch (armor.EquipSlot)
+			{
+				case ARMOR_VALUES.EQUIP_SLOT.HELMET:
+					if (head != null)
+					{
+						UnequipArmor(head);
+						EquipArmor(armor);
+					}
+					else
+					{
+						if (armor.ProtectionAreas.Count == 2)
+						{
+							head = armor;
+							shoulders = armor;
+						}
+						else if (armor.ProtectionAreas.Count == 3)
+						{
+							head = armor;
+							shoulders = armor;
+							chest = armor;
+						}
+						else
+							head = armor;
+					}
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.SHOULDERPLATES:
+
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.CHESTPLATE:
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.SLEEVES:
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.GLOVES:
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.BELT:
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.LEGGINGS:
+					break;
+				case ARMOR_VALUES.EQUIP_SLOT.SHOES:
+					break;
+				default:
+					break;
+			}
+			return true;
+
+		}
 		public bool ReceiveDamage(IPlayer player,ARMOR_VALUES.PROTECTING_AREA targetArea)
 		{
 			IWeapon enemyWeapon = player.MainHand;

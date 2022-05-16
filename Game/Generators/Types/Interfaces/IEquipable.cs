@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace GeneratorLib.Types
 {
-	public interface IEquipable
+	public interface IEquipable : IItem
 	{
-		bool Equip();
+
 	}
 }

@@ -19,6 +19,5 @@ namespace GeneratorLib.Types
 		Dictionary<int, ARMOR_VALUES.PROTECTING_AREA> ProtectionAreas { get; }
 		ARMOR_VALUES.TYPE Type { get; }
 		void ReceiveDamageFrom(IWeapon weapon);
-		string GetArmorData(bool isReadable);
 	}
 }

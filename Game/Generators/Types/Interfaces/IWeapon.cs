@@ -17,6 +17,5 @@ namespace GeneratorLib.Types
 		COMMON_VALUES.RARITY Rarity { get; }
 		WEAPON_VALUES.DAMAGE_TYPE PhysicalDamageType { get; }
 		WEAPON_VALUES.DAMAGE_TYPE MagicalDamageType { get; }
-		string GetWeaponData(bool isReadable);
 	}
 }

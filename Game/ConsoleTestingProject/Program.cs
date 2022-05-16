@@ -1,6 +1,7 @@
 ﻿using System;
 using GeneratorLib.Generator;
 using GeneratorLib.Types;
+using GeneratorLib.Values;
 namespace ConsoleTestingProject
 {
 	class Program
@@ -8,18 +9,19 @@ namespace ConsoleTestingProject
 		static void Main(string[] args)
 		{
 			Generator generator = new Generator();
-			Player player1= new Player();
-			Player player2 = new Player();
-			Console.WriteLine(player2.MainHand.GetWeaponData(true));
-			Console.WriteLine();
-			Console.WriteLine(player1.Head.GetArmorData(true));
-			while (!player1.ReceiveDamage(player2, GeneratorLib.Values.ARMOR_VALUES.PROTECTING_AREA.HEAD));
+			generator.GenerateWeapons(100);
+			generator.GenerateArmors(100);
+			Player player = new Player(isGeared: true);
+			Armor armor = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.HELMET);
+			player.Equip(armor);
+			player.Unequip(player.Head);
+			foreach (var item in player.Inventory)
 			{
-				Console.WriteLine("Player 2 missed :pensive:");
+				Console.WriteLine(item);
 			}
-			Console.WriteLine();
-			Console.WriteLine();
-			Console.WriteLine(player1.Head.GetArmorData(true));
+			player.Equip(player.Inventory[1] as Armor);
+			Console.WriteLine(player.Head);
+
 		}
 	}
 }

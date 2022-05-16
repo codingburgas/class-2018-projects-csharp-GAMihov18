@@ -8,6 +8,10 @@ namespace GeneratorLib.Types
 {
 	public struct COMMON_VALUES
 	{
+		public enum ITEM_TYPE
+		{
+			WEAPON, ARMOR
+		}
 		public enum RARITY
 		{
 			COMMON, UNCOMMON, RARE, EPIC, LEGENDARY, MYTHIC, SPECIAL
