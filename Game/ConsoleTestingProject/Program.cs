@@ -9,16 +9,6 @@ namespace ConsoleTestingProject
 	{
 		static void Main(string[] args)
 		{
-			try
-			{
-				Console.WriteLine(UserHandler.Login("admin", "admi").Name);
-			}
-			catch (ArgumentException e)
-			{
-				Console.WriteLine(e.Message);
-				
-			}
-			
 			
 		}
 	}

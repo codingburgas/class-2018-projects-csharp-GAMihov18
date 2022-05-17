@@ -21,6 +21,11 @@ namespace DataAccessLayer.Models
             modelBuilder.Entity<User>()
                  .HasCheckConstraint("CK_Users_Email", "Email like '%@%'")
                  .HasCheckConstraint("CK_Users_Age", "Age > 13");
-		}
+            modelBuilder.Entity<User>()
+                .HasIndex(s => s.Name).IsUnique();
+            modelBuilder.Entity<User>()
+                .HasIndex(s => s.Email).IsUnique();
+
+        }
     }
 }

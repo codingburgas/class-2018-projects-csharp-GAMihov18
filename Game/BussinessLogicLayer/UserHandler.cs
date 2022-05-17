@@ -15,5 +15,20 @@ namespace BussinessLogicLayer
 			else
 				return user;
 		}
+		public static User Register(User user)
+		{
+			try
+			{
+				ctx.Users.Add(user);
+				ctx.SaveChanges();
+				return user;
+			}
+			catch (Exception e)
+			{
+
+				throw e.InnerException;
+			}
+			
+		}
 	}
 }
