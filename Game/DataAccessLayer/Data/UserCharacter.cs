@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.Data
+namespace DataAccessLayer.Models
 {
 	class UserCharacter
 	{
-		public Character Character { get; set; }
+		public CharacterData Character { get; set; }
 		public User User { get; set; }
 		public int CharacterId { get; set; }
 		public int UserId { get; set; }

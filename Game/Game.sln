@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneratorLib", "Generators\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RFMiscLib", "RFMiscLib\RFMiscLib.csproj", "{3E2DEB0E-DE71-4072-9B40-D13F664E7CA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{D0B77B4D-E42F-4F2B-BD34-A2B5566DF053}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{D0B77B4D-E42F-4F2B-BD34-A2B5566DF053}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinessLogicLayer", "BussinessLogicLayer\BussinessLogicLayer.csproj", "{C190F894-E7F9-46AC-9B46-D97A00F0F93C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D0B77B4D-E42F-4F2B-BD34-A2B5566DF053}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0B77B4D-E42F-4F2B-BD34-A2B5566DF053}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0B77B4D-E42F-4F2B-BD34-A2B5566DF053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C190F894-E7F9-46AC-9B46-D97A00F0F93C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C190F894-E7F9-46AC-9B46-D97A00F0F93C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C190F894-E7F9-46AC-9B46-D97A00F0F93C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C190F894-E7F9-46AC-9B46-D97A00F0F93C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

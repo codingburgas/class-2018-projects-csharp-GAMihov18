@@ -2,25 +2,31 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace DataAccessLayer.Data
+namespace DataAccessLayer.Models
 {
+
 	public class User
 	{
 		[Key]
-		int Id { get; set; }
+		public int Id { get; set; }
 
-		[Required(ErrorMessage = "Name has no value, please fill it in")]
+		[Required]
 		[MaxLength(24)]
-		string Name { get; set; }
+		public string Name { get; set; }
 
-		[Required (ErrorMessage = "Password has no value, please fill it in")]
+		[Required]
 		[MaxLength(256)]
-		string Password { get; set; }
+		
+		public string Password { get; set; }
+		[Required]
+		[MaxLength(4)]
+		public string Salt { get; set; }
 
-		[Required (ErrorMessage = "Email has no value, please fill it in")]
-		string Email { get; set; }
+		[Required]
+		[MaxLength(128)]
+		public string Email { get; set; }
 
-		int Age { get; set; }
+		public int Age { get; set; }
 
 
 	}

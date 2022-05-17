@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Generators\GeneratorLib.csproj" />
+    <ProjectReference Include="..\RFMiscLib\RFMiscLib.csproj" />
+  </ItemGroup>
+
 </Project>
