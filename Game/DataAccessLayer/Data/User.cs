@@ -16,7 +16,7 @@ namespace DataAccessLayer.Models
 
 		[Required]
 		[MaxLength(256)]
-		
+
 		public string Password { get; set; }
 		[Required]
 		[MaxLength(4)]
@@ -27,7 +27,5 @@ namespace DataAccessLayer.Models
 		public string Email { get; set; }
 
 		public int Age { get; set; }
-
-
 	}
 }
