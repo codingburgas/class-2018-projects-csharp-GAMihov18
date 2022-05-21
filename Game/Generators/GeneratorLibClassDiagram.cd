@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GeneratorLib.Generator.Generator">
+    <Position X="5.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAACAAAAAAAAAAgAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Generator\Generator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GeneratorLib.Types.Weapon">
+    <Position X="7.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AhACIBgQAoAYBAAAAAAAAQQAAEFMQgAgQEAAwAIABIA=</HashCode>
+      <FileName>Types\Weapon.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.175" />
+  </Class>
+  <Class Name="GeneratorLib.Types.Armor">
+    <Position X="10" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAEAAQAAAAEAAAAACAQAAAgFQAAgEUgAQBQJAAE=</HashCode>
+      <FileName>Types\Armor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="GeneratorLib.Values.WEAPON_VALUES">
+    <Position X="12.25" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="GeneratorLib.Values.WEAPON_VALUES.TYPE">
+        <TypeIdentifier>
+          <NewMemberFileName>Values\WEAPON_VALUES.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="GeneratorLib.Values.WEAPON_VALUES.DAMAGE_TYPE">
+        <TypeIdentifier>
+          <NewMemberFileName>Values\WEAPON_VALUES.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Values\WEAPON_VALUES.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="GeneratorLib.Values.ARMOR_VALUES">
+    <Position X="14.5" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="GeneratorLib.Values.ARMOR_VALUES.TYPE" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Values\ARMOR_VALUES.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="GeneratorLib.Values.ARMOR_VALUES.PROTECTING_AREA" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Values\ARMOR_VALUES.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Values\ARMOR_VALUES.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="GeneratorLib.Types.IWeapon" Collapsed="true">
+    <Position X="2.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAAgQAAAQAAAAAAAAAAAAAAEAQAAAQAAAgAAAAAA=</HashCode>
+      <FileName>Types\IWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GeneratorLib.Types.IItem" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Types\IItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GeneratorLib.Types.IEquipable" Collapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Types\IEquipable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GeneratorLib.Types.IArmor" Collapsed="true">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAQAAAAAAAAAACAAAAAAAQAAAAQgAABABAAE=</HashCode>
+      <FileName>Types\IArmor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
