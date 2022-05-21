@@ -9,6 +9,10 @@ namespace DataAccessLayer.Models
 	public class GameDbContext : DbContext
 	{
         public DbSet<User> Users { get; set; }
+        public DbSet<CharacterData> CharacterDatas { get; set; }
+        public DbSet<UserCharacter> UserCharacters { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<ArmorData> ArmorDatas { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -25,6 +29,8 @@ namespace DataAccessLayer.Models
                 .HasIndex(s => s.Name).IsUnique();
             modelBuilder.Entity<User>()
                 .HasIndex(s => s.Email).IsUnique();
+            modelBuilder.Entity<UserCharacter>()
+                .HasKey(nameof(UserCharacter.UserId), nameof(UserCharacter.CharacterId));
 
         }
     }

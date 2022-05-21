@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 	
 namespace DataAccessLayer.Models
 {
-	class ArmorData
+	public class ArmorData
 	{
 		[Key]
-		public int ArmorId { get; set; }
+		public int Id { get; set; }
+		public int ArmorCommonDataId { get; set; }
 		public Item ArmorCommonData { get; set; }
 		[Required]
 		public double AssemblyArmor { get; set; }

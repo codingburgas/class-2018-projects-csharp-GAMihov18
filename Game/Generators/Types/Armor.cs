@@ -101,37 +101,66 @@ namespace GeneratorLib.Types
 			double assemblyProtection = -1,
 			ARMOR_VALUES.TYPE type = (ARMOR_VALUES.TYPE)3,
 			double durability = -1,
-			COMMON_VALUES.RARITY rarity = (COMMON_VALUES.RARITY)7)
+			COMMON_VALUES.RARITY rarity = (COMMON_VALUES.RARITY)7,
+			Dictionary<WEAPON_VALUES.DAMAGE_TYPE,double> resistances = null,
+			Dictionary<int, ARMOR_VALUES.PROTECTING_AREA> protectionAreas = null)
 		{
 
-			Dictionary<int, ARMOR_VALUES.PROTECTING_AREA> protectionAreas = new Dictionary<int, ARMOR_VALUES.PROTECTING_AREA>();
+			
 			if (assemblyProtection == -1)
 				this.assemblyProtection = RAND.getRandDouble(300, 3001);
 			else
 				this.assemblyProtection = assemblyProtection;
-			this.resistances = new Dictionary<WEAPON_VALUES.DAMAGE_TYPE, double>();
-			if ((int)type == 3)
-				this.type = (ARMOR_VALUES.TYPE)RAND.getRandInt(0, 3);
-			else
-				this.type = type;
+			
+			
 			if (durability == -1)
 				this.durability = RAND.getRandDouble(100, 1000);
 			else
 				this.durability = durability;
 			this.currentDurability = this.durability;
 			if ((int)rarity == 7)
+			{
 				this.rarity = (COMMON_VALUES.RARITY)RAND.getRandInt(0, 7);
+				SetRarityModifiers();
+			}
+				
 			else
 				this.rarity = rarity;
+
+			if ((int)type == 3)
+			{
+				this.type = (ARMOR_VALUES.TYPE)RAND.getRandInt(0, 3);
+				SetTypeModifiers();
+			}
+				
+			else
+				this.type = type;
 			if ((int)equipSlot == 8)
+			{
 				equipSlot = (ARMOR_VALUES.EQUIP_SLOT)RAND.getRandInt(0, 8);
+				SetRelativeArmorPieceProtectionModifiers();
+				
+			}
 			else
 				this.equipSlot = equipSlot;
-			SetRarityModifiers();
-			SetTypeModifiers();
-			SetRelativeArmorPieceProtectionModifiers();
-			SetProtectionAreas();
-			DecideResistances();
+			
+			if(protectionAreas ==null)
+			{
+				SetProtectionAreas();
+			}
+			else
+			{
+				this.protectionAreas = protectionAreas;
+			}
+			if (resistances == null)
+			{
+				this.resistances = new Dictionary<WEAPON_VALUES.DAMAGE_TYPE, double>();
+				DecideResistances();
+			}
+			else
+			{
+				this.resistances = resistances;
+			}
 			setPhysicalAndMagicalProtection();
 			SetName();
 		}

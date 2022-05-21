@@ -2,6 +2,7 @@
 using GeneratorLib.Generator;
 using GeneratorLib.Types;
 using GeneratorLib.Values;
+using DataAccessLayer.Models;
 using BussinessLogicLayer;
 namespace ConsoleTestingProject
 {
@@ -9,7 +10,7 @@ namespace ConsoleTestingProject
 	{
 		static void Main(string[] args)
 		{
-			
+			UserHandler.UploadArmor(new Armor());
 		}
 	}
 }

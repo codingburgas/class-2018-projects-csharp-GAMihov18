@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Models
 {
-	class CharacterInventory
+	public class CharacterInventory
 	{
 		public CharacterData CharacterData { get; set; }
 		public Item Item { get; set; }

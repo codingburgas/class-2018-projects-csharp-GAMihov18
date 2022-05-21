@@ -4,6 +4,7 @@ using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(GameDbContext))]
-    partial class GameDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220521183928_Add Armor data")]
+    partial class AddArmordata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,11 +26,11 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("DataAccessLayer.Models.ArmorData", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ArmorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArmorId"), 1L, 1);
 
                     b.Property<double>("AirResistance")
                         .HasColumnType("float");
@@ -81,7 +83,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<double>("WaterResistance")
                         .HasColumnType("float");
 
-                    b.HasKey("Id");
+                    b.HasKey("ArmorId");
 
                     b.HasIndex("ArmorCommonDataId");
 
