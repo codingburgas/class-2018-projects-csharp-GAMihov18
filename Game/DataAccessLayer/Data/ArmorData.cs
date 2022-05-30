@@ -13,7 +13,6 @@ namespace DataAccessLayer.Models
 		public int Id { get; set; }
 		public int ArmorCommonDataId { get; set; }
 		public Item ArmorCommonData { get; set; }
-		[Required]
 		public double AssemblyArmor { get; set; }
 		[Range(0,6)]
 		public int ArmorRarity { get; set; }
@@ -23,8 +22,8 @@ namespace DataAccessLayer.Models
 		public int ArmorEquipSlot { get; set; }
 
 		public int FirstProtectionArea { get; set; }
-		public int? SecondProtectionArea { get; set; }
-		public int? ThirdProtectionArea { get; set; }
+		public int SecondProtectionArea { get; set; }
+		public int ThirdProtectionArea { get; set; }
 
 
 		public double SlashingResistance { get; set; }

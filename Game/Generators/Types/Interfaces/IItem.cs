@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using GeneratorLib.Values;
 namespace GeneratorLib.Types
 {
 	public interface IItem

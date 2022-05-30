@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeneratorLib.Types
+namespace GeneratorLib.Values
 {
 	public struct COMMON_VALUES
 	{

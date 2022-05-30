@@ -102,7 +102,7 @@ namespace GeneratorLib.Types
 			SetName();
 		}
 
-		public Weapon(string name = "", double assemblyDamage = 0, double critMult = 0, double critRate = 0, WEAPON_VALUES.TYPE weaponType = default, COMMON_VALUES.RARITY rarity = default, WEAPON_VALUES.DAMAGE_TYPE magicalDamageType = default, WEAPON_VALUES.DAMAGE_TYPE physicalDamageType = default)
+		public Weapon(string name = "", double assemblyDamage = 0, double critMult = 0, double critRate = 0, WEAPON_VALUES.TYPE weaponType = default, COMMON_VALUES.RARITY rarity = default, WEAPON_VALUES.DAMAGE_TYPE magicalDamageType = default, WEAPON_VALUES.DAMAGE_TYPE physicalDamageType = default, WEAPON_VALUES.DAMAGE_TYPE mainDamageType = default)
 		{
 			this.assemblyDamage = assemblyDamage;
 			this.critMult = critMult;
@@ -111,14 +111,11 @@ namespace GeneratorLib.Types
 			this.rarity= rarity;
 			this.magicalDamageType = magicalDamageType;
 			this.physicalDamageType = physicalDamageType;
+			this.mainDamageType = mainDamageType;
 			if (name == "")
-			{
 				SetName();
-			}
 			else
-			{
 				this.name = name;
-			}
 		}
 
 			private void SetPhysDamage()

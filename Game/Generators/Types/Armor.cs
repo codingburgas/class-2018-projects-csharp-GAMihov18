@@ -37,7 +37,10 @@ namespace GeneratorLib.Types
 				}
 				foreach (var protectionArea in this.protectionAreas)
 				{
-					protectionAreas += $"\t- {ARMOR_VALUES.ToString(protectionArea.Value)}\n";
+					if (protectionArea.Value!= (ARMOR_VALUES.PROTECTING_AREA)(-1))
+					{
+						protectionAreas += $"\t- {ARMOR_VALUES.ToString(protectionArea.Value)}\n";
+					}
 				}
 				return $"Name: {name}\n" +
 					$"Assembly Protection: {assemblyProtection:f2}\n" +
@@ -276,12 +279,12 @@ namespace GeneratorLib.Types
 					//15% chance to get shoulder protection with helmet
 					if (RAND.getRandInt(0,101) > 85)
 					{
-						protectionAreas.Add(1, ARMOR_VALUES.PROTECTING_AREA.SHOULDERS);
+						protectionAreas[1] = ARMOR_VALUES.PROTECTING_AREA.SHOULDERS;
 						assemblyProtection += 500;
 						assemblyProtection *= 1.5;
 						if (RAND.getRandInt(0, 101) > 95)
 						{
-							protectionAreas.Add(2, ARMOR_VALUES.PROTECTING_AREA.CHEST);
+							protectionAreas[2] = ARMOR_VALUES.PROTECTING_AREA.CHEST;
 							assemblyProtection += 1000;
 							assemblyProtection *= 1.3;
 						}
@@ -291,12 +294,12 @@ namespace GeneratorLib.Types
 					//15% chance to get hand protection with sleeve armor
 					if (RAND.getRandInt(0, 101) > 85)
 					{
-						protectionAreas.Add(1, ARMOR_VALUES.PROTECTING_AREA.HANDS);
+						protectionAreas[1] = ARMOR_VALUES.PROTECTING_AREA.HANDS;
 						assemblyProtection += 120;
 						assemblyProtection *= 1.1;
 						if (RAND.getRandInt(0, 101) > 95)
 						{
-							protectionAreas.Add(2, ARMOR_VALUES.PROTECTING_AREA.SHOULDERS);
+							protectionAreas[2] = ARMOR_VALUES.PROTECTING_AREA.SHOULDERS;
 							assemblyProtection += 500;
 							assemblyProtection *= 1.3;
 						}
@@ -306,12 +309,12 @@ namespace GeneratorLib.Types
 					//20% chance to get waist protection with chestplate
 					if (RAND.getRandInt(0,101) > 80)
 					{
-						protectionAreas.Add(1,ARMOR_VALUES.PROTECTING_AREA.WAIST);
+						protectionAreas[1] =  ARMOR_VALUES.PROTECTING_AREA.WAIST;
 						assemblyProtection += 100;
 						assemblyProtection *= 1.2;
 						if (RAND.getRandInt(0,101) > 97)
 						{
-							protectionAreas.Add(2, ARMOR_VALUES.PROTECTING_AREA.SHOULDERS);
+							protectionAreas[2] = ARMOR_VALUES.PROTECTING_AREA.SHOULDERS;
 							assemblyProtection += 300;
 							assemblyProtection *= 1.1;
 						}
@@ -321,7 +324,7 @@ namespace GeneratorLib.Types
 					//30% chance to have feet protection on leggings
 					if (RAND.getRandInt(0,101) > 70)
 					{
-						protectionAreas.Add(1, ARMOR_VALUES.PROTECTING_AREA.FEET);
+						protectionAreas[1] = ARMOR_VALUES.PROTECTING_AREA.FEET;
 						assemblyProtection += 100;
 						assemblyProtection *= 1.2;
 					}
@@ -341,31 +344,47 @@ namespace GeneratorLib.Types
 			{
 				case ARMOR_VALUES.EQUIP_SLOT.HELMET:
 					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.HEAD);
+					protectionAreas.Add(1, (ARMOR_VALUES.PROTECTING_AREA)(-1));
+					protectionAreas.Add(2, (ARMOR_VALUES.PROTECTING_AREA)(-1));
 					SetAdditionalProtectionAreas();
 					break;
 				case ARMOR_VALUES.EQUIP_SLOT.SHOULDERPLATES:
 					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.SHOULDERS);
+					protectionAreas.Add(1, (ARMOR_VALUES.PROTECTING_AREA)(-1));
+					protectionAreas.Add(2, (ARMOR_VALUES.PROTECTING_AREA)(-1));
 					break;
 				case ARMOR_VALUES.EQUIP_SLOT.CHESTPLATE:
 					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.CHEST);
+					protectionAreas.Add(1, (ARMOR_VALUES.PROTECTING_AREA)(-1));
+					protectionAreas.Add(2, (ARMOR_VALUES.PROTECTING_AREA)(-1));
 					SetAdditionalProtectionAreas();
 					break;
 				case ARMOR_VALUES.EQUIP_SLOT.SLEEVES:
 					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.ARMS);
+					protectionAreas.Add(1, (ARMOR_VALUES.PROTECTING_AREA)(-1));
+					protectionAreas.Add(2, (ARMOR_VALUES.PROTECTING_AREA)(-1));
 					SetAdditionalProtectionAreas();
 					break;
 				case ARMOR_VALUES.EQUIP_SLOT.GLOVES:
 					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.HANDS);
+					protectionAreas.Add(1, (ARMOR_VALUES.PROTECTING_AREA)(-1));
+					protectionAreas.Add(2, (ARMOR_VALUES.PROTECTING_AREA)(-1));
 					break;
 				case ARMOR_VALUES.EQUIP_SLOT.BELT:
 					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.WAIST);
+					protectionAreas.Add(1, (ARMOR_VALUES.PROTECTING_AREA)(-1));
+					protectionAreas.Add(2, (ARMOR_VALUES.PROTECTING_AREA)(-1));
 					break;
 				case ARMOR_VALUES.EQUIP_SLOT.LEGGINGS:
 					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.LEGS);
+					protectionAreas.Add(1, (ARMOR_VALUES.PROTECTING_AREA)(-1));
+					protectionAreas.Add(2, (ARMOR_VALUES.PROTECTING_AREA)(-1));
 					SetAdditionalProtectionAreas();
 					break;
 				case ARMOR_VALUES.EQUIP_SLOT.SHOES:
 					protectionAreas.Add(0, ARMOR_VALUES.PROTECTING_AREA.FEET);
+					protectionAreas.Add(1, (ARMOR_VALUES.PROTECTING_AREA)(-1));
+					protectionAreas.Add(2, (ARMOR_VALUES.PROTECTING_AREA)(-1));
 					break;
 				default:
 					break;

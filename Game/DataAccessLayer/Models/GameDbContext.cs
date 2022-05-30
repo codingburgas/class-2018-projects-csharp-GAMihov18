@@ -13,6 +13,7 @@ namespace DataAccessLayer.Models
         public DbSet<UserCharacter> UserCharacters { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<ArmorData> ArmorDatas { get; set; }
+        public DbSet<WeaponData> WeaponDatas { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
