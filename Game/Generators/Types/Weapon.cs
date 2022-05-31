@@ -71,6 +71,11 @@ namespace GeneratorLib.Types
 			get { return magicalDamageType; }
 			private set { magicalDamageType = value; }
 		}
+		public WEAPON_VALUES.DAMAGE_TYPE MainDamageType
+		{
+			get { return mainDamageType; }
+			private set { mainDamageType = value; }
+		}
 		public Weapon()
 		{
 			name = "";
@@ -112,6 +117,7 @@ namespace GeneratorLib.Types
 			this.magicalDamageType = magicalDamageType;
 			this.physicalDamageType = physicalDamageType;
 			this.mainDamageType = mainDamageType;
+			applyMainDamageMod();
 			if (name == "")
 				SetName();
 			else

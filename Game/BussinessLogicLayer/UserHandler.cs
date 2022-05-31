@@ -1,9 +1,9 @@
 ﻿using DataAccessLayer.Models;
-using System.Security.Cryptography;
-using System.Text;
-using RFMiscLib.RandomNumber;
 using GeneratorLib.Types;
 using GeneratorLib.Values;
+using RFMiscLib.RandomNumber;
+using System.Security.Cryptography;
+using System.Text;
 namespace BussinessLogicLayer
 {
 	public class UserHandler
@@ -80,7 +80,17 @@ namespace BussinessLogicLayer
 			}
 			else if (weapon != null && weaponData == null)
 			{
-
+				weaponData = new WeaponData()
+				{
+					AssemblyDamage = weapon.AssemblyDamage,
+					CritMult = weapon.CritMult,
+					CritRate = weapon.CritRate,
+					WeaponType = (int)weapon.WeaponType,
+					WeaponRarity = (int)weapon.Rarity,
+					MainDamageType = (int)weapon.MainDamageType,
+					PhysicalDamageType = (int)weapon.PhysicalDamageType,
+					MagicalDamageType = (int)weapon.MagicalDamageType
+				};
 				
 				return true;
 			}
@@ -89,6 +99,51 @@ namespace BussinessLogicLayer
 				return false;
 			}
 		}
+		public static Weapon GetWeaponById(int id)
+		{
+			Weapon weapon = null;
+			WeaponData data = null;
+			try
+			{
+				data = ctx.WeaponDatas.Where(data => data.Id == id).First();
+			}
+			catch (Exception)
+			{
+
+			}
+
+			ConvertWeapon(ref weapon, ref data);
+
+			return weapon;
+		}
+
+		public static bool UploadWeapon(Weapon weapon)
+		{
+			if (weapon == null)
+				return false;
+
+
+			WeaponData data = null;
+			if (ConvertWeapon(ref weapon,ref data))
+			{
+				Item weaponItem = new Item() { Name = weapon.Name, ItemType = COMMON_VALUES.ITEM_TYPE.WEAPON };
+				ctx.Items.Add(weaponItem);
+				var last = ctx.Items.OrderBy(i => i.Id).LastOrDefault();
+				data.WeaponCommonData = weaponItem;
+				if (last == null)
+				{
+					data.WeaponCommonDataId = 1;
+				}
+				else
+					data.WeaponCommonDataId = last.Id + 1;
+				ctx.WeaponDatas.Add(data);
+				ctx.SaveChanges();
+			}
+
+
+			return true;
+		}
+
 		//Summary:
 		//	Converts from Armor to ArmorData class and vice versa.
 		//	If armor parameter is null, it will convert from armorData to Armor.
@@ -179,9 +234,17 @@ namespace BussinessLogicLayer
 			{
 				Item armorItem = new Item() { Name = armor.Name,ItemType = COMMON_VALUES.ITEM_TYPE.ARMOR};
 				ctx.Items.Add(armorItem);
-				var last = ctx.Items.OrderBy(i => i.Id).Last();
-				data.ArmorCommonData = armorItem;
-				data.ArmorCommonDataId = last.Id+1;
+				var last = ctx.Items.OrderBy(i => i.Id).LastOrDefault();
+				if (last == null)
+				{
+					data.ArmorCommonData = armorItem;
+					data.ArmorCommonDataId = 1;
+				}
+				else
+				{
+					data.ArmorCommonData = armorItem;
+					data.ArmorCommonDataId = last.Id + 1;
+				}
 				ctx.ArmorDatas.Add(data);
 				ctx.SaveChanges();
 			}

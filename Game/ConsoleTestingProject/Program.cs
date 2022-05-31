@@ -10,7 +10,7 @@ namespace ConsoleTestingProject
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine(UserHandler.GetArmorById(3).GetData(true));
+			UserHandler.UploadArmor(new Armor());
 		}
 	}
 }
