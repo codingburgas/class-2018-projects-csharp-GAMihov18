@@ -4,6 +4,7 @@ using GeneratorLib.Values;
 using RFMiscLib.RandomNumber;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 namespace BussinessLogicLayer
 {
 	public class UserHandler
@@ -308,5 +309,40 @@ namespace BussinessLogicLayer
 			ctx.SaveChanges();
 			return data;
 		}
+
+		public static Character GetCharacterById(int id)
+		{
+			Character character = null;
+			CharacterData data;
+			try
+			{
+				data = ctx.CharacterDatas.Where(i => i.Id == id).FirstOrDefault();
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
+
+			character = new Character(
+				health: data.Health,
+				stamina: data.Stamina,
+				staminaRegen: data.StaminaRegenerationRate,
+				mana: data.Mana,
+				manaRegen: data.ManaRegenerationRate,
+				mainHand: GetWeaponById((int)data.MainHandId),
+				head: GetArmorById((int)data.HeadId),
+				shoulders: GetArmorById((int)data.ShouldersId),
+				arms: GetArmorById((int)data.ArmsId),
+				hands: GetArmorById((int)data.HandsId),
+				chest: GetArmorById((int)data.ChestId),
+				waist: GetArmorById((int)data.WaistId),
+				legs: GetArmorById((int)data.LegsId),
+				feet: GetArmorById((int)data.FeetId)
+
+				);
+			return character;
+		}
+
 	}
 }
