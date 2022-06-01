@@ -10,7 +10,9 @@ namespace ConsoleTestingProject
 	{
 		static void Main(string[] args)
 		{
-			UserHandler.UploadCharacter(new Character());
+			
+			UserHandler.Login("admin", "admin");
+			UserHandler.CreateCharacter(new Character());
 		}
 	}
 }

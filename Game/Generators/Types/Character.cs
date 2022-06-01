@@ -71,7 +71,36 @@ namespace GeneratorLib.Types
 		public Character(double health = 0, double stamina = 0, double mana = 0, double staminaRegen = 0, double manaRegen = 0,IWeapon mainHand = null, IArmor head = null, IArmor shoulders = null, IArmor arms = null, IArmor hands = null, IArmor waist = null, IArmor chest = null, IArmor legs = null, IArmor feet = null)
 
 		{
+			if (health == 0)
+				this.health = RAND.getRandDouble(1000, 3000);
+			else
+				this.health = health;
+			if (stamina == 0)
+				this.stamina = RAND.getRandDouble(300, 700);
+			else
+				this.stamina = stamina;
+			if (mana == 0)
+				this.mana = RAND.getRandDouble(300 + (700 - this.stamina), 700);
+			else
+				this.mana = mana;
+			if (staminaRegen == 0)
+				this.staminaRegenerationRate = RAND.getRandDouble(30, 70);
+			else
+				this.staminaRegenerationRate = staminaRegen;
+			if (manaRegen == 0)
+				this.manaRegenerationRate = RAND.getRandDouble(30 + (70 - staminaRegenerationRate), 70);
+			else
+				this.manaRegenerationRate = manaRegen;
 
+			this.mainHand = mainHand;
+			this.head = head;
+			this.shoulders = shoulders;
+			this.arms = arms;
+			this.hands = hands;
+			this.waist = waist;
+			this.chest = chest;
+			this.legs = legs;
+			this.feet = feet;
 		}
 		public bool Equip(IEquipable equipable)
 		{

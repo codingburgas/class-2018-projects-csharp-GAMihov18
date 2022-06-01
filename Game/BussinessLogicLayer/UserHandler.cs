@@ -253,17 +253,28 @@ namespace BussinessLogicLayer
 
 			return data.Id;
 		}
-		public static bool CreateCharacter(Character character, User user )
+		public static bool CreateCharacter(Character character, User user = null)
 		{
+			if (user == null && currentlyLoggedInUser != null)
+			{
+				user = currentlyLoggedInUser;
+			}
+			UserCharacter userCharacter = new UserCharacter()
+			{
+				User = user,
+				Character = UploadCharacter(character)
+			};
+			userCharacter.CharacterId = userCharacter.Character.Id;
+			userCharacter.UserId = user.Id;
 			try
 			{
-				ctx.UserCharacters.Add(new UserCharacter() { User = user, Character = UploadCharacter(character) });
+				ctx.UserCharacters.Add(userCharacter);
 				ctx.SaveChanges();
 				return true;
 			}
 			catch (Exception e)
 			{
-				throw e.InnerException;
+				throw e;
 			}
 		}
 		public static CharacterData UploadCharacter(Character character)
