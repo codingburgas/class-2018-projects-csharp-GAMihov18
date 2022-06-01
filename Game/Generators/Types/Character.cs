@@ -49,39 +49,24 @@ namespace GeneratorLib.Types
 		public double ManaRegenerationRate => manaRegenerationRate;
 		public List<IItem> Inventory => inventory;
 
-		public Character(bool isGeared = true)
+		public Character()
 		{
+			health = RAND.getRandDouble(1000, 3000);
+			stamina = RAND.getRandDouble(300, 700);
+			staminaRegenerationRate = RAND.getRandDouble(30, 70);
+			mana = RAND.getRandDouble(300 + (700-stamina), 700 );
+			manaRegenerationRate = RAND.getRandDouble(30, 70 - (staminaRegenerationRate - 30));
+			mainHand = new Weapon();
+			head = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.HELMET);
+			shoulders = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SHOULDERPLATES);
+			arms = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SLEEVES);
+			hands = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.GLOVES);
+			waist = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.BELT);
+			chest = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.CHESTPLATE);
+			legs = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.LEGGINGS);
+			feet = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SHOES);
 
-			if (isGeared)
-			{
-				
-				mainHand = new Weapon();
-				head = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.HELMET);
-				shoulders = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SHOULDERPLATES);
-				arms = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SLEEVES);
-				hands = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.GLOVES);
-				waist = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.BELT);
-				chest = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.CHESTPLATE);
-				legs = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.LEGGINGS);
-				feet = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SHOES);
-			}
-			else
-			{
-				health = RAND.getRandDouble(1000, 3000);
-				stamina = RAND.getRandDouble(300, 800);
-				staminaRegenerationRate = RAND.getRandDouble(20, 70);
-				mana = RAND.getRandDouble(300, 800);
-				manaRegenerationRate = RAND.getRandDouble(20, 70);
-				mainHand = null;
-				head = null;
-				shoulders = null;
-				arms = null;
-				hands = null;
-				waist = null;
-				chest = null;
-				legs = null;
-				feet = null;
-			}
+
 		}
 		public Character(double health = 0, double stamina = 0, double mana = 0, double staminaRegen = 0, double manaRegen = 0,IWeapon mainHand = null, IArmor head = null, IArmor shoulders = null, IArmor arms = null, IArmor hands = null, IArmor waist = null, IArmor chest = null, IArmor legs = null, IArmor feet = null)
 
