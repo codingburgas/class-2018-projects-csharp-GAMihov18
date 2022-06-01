@@ -117,10 +117,10 @@ namespace BussinessLogicLayer
 			return weapon;
 		}
 
-		public static bool UploadWeapon(Weapon weapon)
+		public static int UploadWeapon(Weapon weapon)
 		{
 			if (weapon == null)
-				return false;
+				return -1;
 
 
 			WeaponData data = null;
@@ -141,7 +141,7 @@ namespace BussinessLogicLayer
 			}
 
 
-			return true;
+			return data.Id;
 		}
 
 		//Summary:
@@ -224,10 +224,10 @@ namespace BussinessLogicLayer
 
 			return armor;
 		}
-		public static bool UploadArmor(Armor armor)
+		public static int UploadArmor(Armor armor)
 		{
 			if (armor == null)
-				return false;
+				return -1;
 
 			ArmorData data = null;
 			if (ConvertArmor(ref armor, ref data))
@@ -249,16 +249,15 @@ namespace BussinessLogicLayer
 				ctx.SaveChanges();
 			}
 			else
-				return false;
+				return -1;
 
-			return true;
+			return data.Id;
 		}
-		public static bool CreateCharacter(User user, CharacterData character)
+		public static bool CreateCharacter(Character character, User user )
 		{
 			try
 			{
-				ctx.CharacterDatas.Add(character);
-				ctx.UserCharacters.Add(new UserCharacter() { User = user, Character = character });
+				ctx.UserCharacters.Add(new UserCharacter() { User = user, Character = UploadCharacter(character) });
 				ctx.SaveChanges();
 				return true;
 			}
@@ -266,8 +265,37 @@ namespace BussinessLogicLayer
 			{
 				throw e.InnerException;
 			}
-			
-			
+		}
+		public static CharacterData UploadCharacter(Character character)
+		{
+			CharacterData data = new CharacterData();
+			CharacterInventory inventory = new CharacterInventory();
+			data.HeadId = UploadArmor(character.Head as Armor);
+			data.Head = character.Head as Item;
+			data.ShouldersId = UploadArmor(character.Shoulders as Armor);
+			data.Shoulders = character.Shoulders as Item;
+			data.ArmsId = UploadArmor(character.Arms as Armor);
+			data.Arms = character.Arms as Item;
+			data.HandsId = UploadArmor(character.Hands as Armor);
+			data.Hands = character.Hands as Item;
+			data.WaistId = UploadArmor(character.Waist as Armor);
+			data.Waist = character.Waist as Item;
+			data.ChestId = UploadArmor(character.Chest as Armor);
+			data.Chest = character.Chest as Item;
+			data.LegsId = UploadArmor(character.Legs as Armor);
+			data.Legs = character.Legs as Item;
+			data.FeetId = UploadArmor(character.Feet as Armor);
+			data.Feet = character.Feet as Item;
+			data.MainHandId = UploadWeapon(character.MainHand as Weapon);
+			data.MainHand = character.MainHand as Item;
+			data.Health = character.Health;
+			data.Mana = character.Mana;
+			data.StaminaRegenerationRate = character.StaminaRegenerationRate;
+			data.Stamina = character.Stamina;
+			data.ManaRegenerationRate = character.ManaRegenerationRate;
+			ctx.CharacterDatas.Add(data);
+			ctx.SaveChanges();
+			return data;
 		}
 	}
 }

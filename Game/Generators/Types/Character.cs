@@ -54,6 +54,7 @@ namespace GeneratorLib.Types
 
 			if (isGeared)
 			{
+				
 				mainHand = new Weapon();
 				head = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.HELMET);
 				shoulders = new Armor(equipSlot: ARMOR_VALUES.EQUIP_SLOT.SHOULDERPLATES);
@@ -66,6 +67,11 @@ namespace GeneratorLib.Types
 			}
 			else
 			{
+				health = RAND.getRandDouble(1000, 3000);
+				stamina = RAND.getRandDouble(300, 800);
+				staminaRegenerationRate = RAND.getRandDouble(20, 70);
+				mana = RAND.getRandDouble(300, 800);
+				manaRegenerationRate = RAND.getRandDouble(20, 70);
 				mainHand = null;
 				head = null;
 				shoulders = null;
@@ -76,6 +82,11 @@ namespace GeneratorLib.Types
 				legs = null;
 				feet = null;
 			}
+		}
+		public Character(double health = 0, double stamina = 0, double mana = 0, double staminaRegen = 0, double manaRegen = 0,IWeapon mainHand = null, IArmor head = null, IArmor shoulders = null, IArmor arms = null, IArmor hands = null, IArmor waist = null, IArmor chest = null, IArmor legs = null, IArmor feet = null)
+
+		{
+
 		}
 		public bool Equip(IEquipable equipable)
 		{

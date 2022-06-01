@@ -10,7 +10,7 @@ namespace ConsoleTestingProject
 	{
 		static void Main(string[] args)
 		{
-			UserHandler.UploadArmor(new Armor());
+			UserHandler.UploadCharacter(new Character());
 		}
 	}
 }
