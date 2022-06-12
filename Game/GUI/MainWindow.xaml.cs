@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using DataAccessLayer.Models;
+using BussinessLogicLayer;
+
 namespace GUI
 {
 	/// <summary>
@@ -20,9 +23,12 @@ namespace GUI
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		LoginWindow loginWindow;
 		public MainWindow()
 		{
-			InitializeComponent();
+			loginWindow = new LoginWindow(this);
+			loginWindow.Show();
+			this.Hide();
 		}
 	}
 }
