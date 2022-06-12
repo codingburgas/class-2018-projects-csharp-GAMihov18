@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RFMiscLib", "RFMiscLib\RFMi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{D0B77B4D-E42F-4F2B-BD34-A2B5566DF053}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinessLogicLayer", "BussinessLogicLayer\BussinessLogicLayer.csproj", "{C190F894-E7F9-46AC-9B46-D97A00F0F93C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BussinessLogicLayer", "BussinessLogicLayer\BussinessLogicLayer.csproj", "{C190F894-E7F9-46AC-9B46-D97A00F0F93C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{0AAC1A40-76EA-42F2-8DA2-3F56EB3E167F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{C190F894-E7F9-46AC-9B46-D97A00F0F93C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C190F894-E7F9-46AC-9B46-D97A00F0F93C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C190F894-E7F9-46AC-9B46-D97A00F0F93C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AAC1A40-76EA-42F2-8DA2-3F56EB3E167F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AAC1A40-76EA-42F2-8DA2-3F56EB3E167F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AAC1A40-76EA-42F2-8DA2-3F56EB3E167F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AAC1A40-76EA-42F2-8DA2-3F56EB3E167F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
