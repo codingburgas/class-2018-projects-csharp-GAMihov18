@@ -6,9 +6,8 @@
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-	<Grid>
-		<Label x:Name="NameLabel"></Label>
-	</Grid>
+
+	<Frame x:Name="MainWindowFrame"></Frame>
 
 
 </Window>
