@@ -26,17 +26,22 @@ namespace GUI
 		{
 			this.window = window;
 			InitializeComponent();
-			window.MainWindowFrame.Navigate(this);
 		}
 
 		private void RedirectToLoginPage(object sender, MouseButtonEventArgs e)
 		{
-			new LoginPage(window);
+			window.MainWindowFrame.Navigate(new LoginPage(window));
+
 		}
 
 		private void RegisterConfirmButton_Click(object sender, RoutedEventArgs e)
 		{
-			User user = new User() { Name = NameTextBox.Text, Email = EmailTextBox.Text, Password = PasswordTextBox.Text, Age = DateTime.Now.Year - AgeDatePicker.SelectedDate.Value.Year };
+			User user = new User() 
+			{ 
+				Name = NameTextBox.Text, 
+				Email = EmailTextBox.Text, 
+				Password = PasswordTextBox.Text, 
+				Age = DateTime.Now.Year - AgeDatePicker.SelectedDate.Value.Year };
 			UserHandler.Register(user);
 		}
 	}

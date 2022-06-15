@@ -23,12 +23,14 @@ namespace GUI
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		MainMenu mainMenu;
 		LoginPage loginPage;
 		RegisterPage registerPage;
 		public MainWindow()
 		{
 			InitializeComponent();
-			loginPage = new LoginPage(this);
+			mainMenu = new MainMenu(this);
+			MainWindowFrame.Navigate(mainMenu);
 		}
 	}
 }

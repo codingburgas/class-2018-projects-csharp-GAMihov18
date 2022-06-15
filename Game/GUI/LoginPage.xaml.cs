@@ -29,7 +29,6 @@ namespace GUI
 			IsLoginFinished = false;
 			this.window = window;
 			InitializeComponent();
-			window.MainWindowFrame.Navigate(this);
 		}
 
 		private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -39,7 +38,7 @@ namespace GUI
 				UserHandler.Login(UsernameTextBox.Text, PasswordTextBox.Password);
 				
 				IsLoginFinished = true;
-				window.MainWindowFrame.Navigate(new Page());
+				window.MainWindowFrame.Navigate(new MainMenu(window, true));
 			}
 			catch (Exception)
 			{
